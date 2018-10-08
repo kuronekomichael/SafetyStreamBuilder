@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: kuronekomichael/flutter:jenkins-slave
+    steps:
+      - checkout
+      - run:
+          name: Upgrade flutter framework
+          command: flutter upgrade
+      - run:
+          name: Get dependencies
+          command: flutter packages get
+      - run:
+          name: Run tests
+          command: flutter test
