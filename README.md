@@ -1,11 +1,13 @@
-# Safety StreamBuilder for Flutter
+# SafetyStreamBuilder for Flutter
 
-For lazy, `SafetyStreamBuilder` can use with just a little confidence.
+[![Pub](https://img.shields.io/pub/v/safety_stream_builder.svg)](https://pub.dartlang.org/packages/safety_stream_builder)
+
+For lazy, `SafetyStreamBuilder` provide just a little safety.
 
 ## Usage
 
-In `StreamBuilder`, it is necessary to finely implement whether AsyncSnapshot contains data or an error has occurred.
-`SafetyStreamBuilder` provides default blank widget and error display widget and direct data. (hiding `AsyncSnapshot`)
+`StreamBuilder` need to finely implement whether AsyncSnapshot contains data or an error has occurred.
+`SafetyStreamBuilder` provides default blank widget and error display widget and direct data. (Hiding `AsyncSnapshot`)
 
 ### Before: Using Dart standard StreamBuilder
 
