@@ -1,6 +1,25 @@
 version: 2
 jobs:
-  build:
+  analytics:
+    docker:
+      - image: kuronekomichael/flutter:jenkins-slave
+    steps:
+      - checkout
+      - run:
+          name: Upgrade flutter framework
+          command: flutter upgrade
+      - run:
+          name: Get dependencies
+          command: flutter packages get
+      - run:
+          name: Analyze code
+          command: dartcop --options ./analysis_options.yaml ./lib > checkstyled.xml
+      - run:
+          name: Write github pr
+          command: cat checkstyled.xml | reviewdog -f "checkstyle" -reporter=github-pr-review
+      - store_artifacts:
+          path: checkstyled.xml
+  test:
     docker:
       - image: kuronekomichael/flutter:jenkins-slave
     steps:
@@ -14,3 +33,9 @@ jobs:
       - run:
           name: Run tests
           command: flutter test
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - analytics
+      - test
