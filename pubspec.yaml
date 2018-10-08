@@ -1,8 +1,8 @@
-name: smart_stream_builder
+name: safety_stream_builder
 description: A new flutter package project.
 version: 0.0.1
-author:
-homepage:
+author: kuronekomichael <hardwarehacking@gmail.com>
+homepage: https://github.com/kuronekomichael/SafetyStreamBuilder
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
