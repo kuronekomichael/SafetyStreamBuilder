@@ -64,7 +64,7 @@ class SafetyStreamBuilder<T> extends StreamBuilder<T> {
   static Widget _defaultBuildErrorWidget(BuildContext _) =>
       const Icon(Icons.error_outline);
 
-  static Widget _defaultBuildBlankWidget(BuildContext _) => Container();
+  static Widget _defaultBuildBlankWidget(BuildContext _) => Text('NG');
 
   static void handleError({@required BuildHandler build}) =>
       _buildErrorWidget = build;
