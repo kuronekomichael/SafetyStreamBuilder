@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:safety_stream_builder/safety_stream_builder.dart';
 
-Widget buildTest(Stream stream, {Widget blankWidget, Widget errorWidget}) =>
+Widget buildTest(Stream<String> stream,
+        {Widget blankWidget, Widget errorWidget}) =>
     MaterialApp(
       home: SafetyStreamBuilder<String>(
         stream: stream,
@@ -19,7 +20,7 @@ void main() {
   Stream<String> errStream;
 
   setUp(() {
-    stream = Stream<String>.fromIterable(['Hello, World.']);
+    stream = Stream<String>.fromIterable(<String>['Hello, World.']);
     errStream = stream.map((_) => throw new Error());
   });
 
@@ -41,7 +42,8 @@ void main() {
   });
 
   testWidgets('Set widget for blank', (WidgetTester tester) async {
-    await tester.pumpWidget(buildTest(stream, blankWidget: Text('NOOOO DATA')));
+    await tester
+        .pumpWidget(buildTest(stream, blankWidget: const Text('NOOOO DATA')));
     expect(find.text('NOOOO DATA'), findsOneWidget);
     expect(find.text('NO DATA'), findsNothing);
 
@@ -51,7 +53,7 @@ void main() {
   });
   testWidgets('Set widget for error', (WidgetTester tester) async {
     await tester
-        .pumpWidget(buildTest(errStream, errorWidget: Text('ERROR!!!!')));
+        .pumpWidget(buildTest(errStream, errorWidget: const Text('ERROR!!!!')));
 
     await tester.pump();
     expect(find.text('ERROR!!!!'), findsOneWidget);
@@ -59,7 +61,7 @@ void main() {
 
   testWidgets('Set default widget for blank', (WidgetTester tester) async {
     SafetyStreamBuilder.handleBlank(
-        build: (BuildContext context) => Text('This is no data'));
+        build: (BuildContext context) => const Text('This is no data'));
 
     await tester.pumpWidget(buildTest(stream));
     expect(find.text('This is no data'), findsOneWidget);
@@ -72,9 +74,9 @@ void main() {
 
   testWidgets('Set default widget for error', (WidgetTester tester) async {
     SafetyStreamBuilder.handleBlank(
-        build: (BuildContext context) => Text('This is nooooo data'));
+        build: (BuildContext context) => const Text('This is nooooo data'));
     SafetyStreamBuilder.handleError(
-        build: (BuildContext context) => Text('This is error message'));
+        build: (BuildContext context) => const Text('This is error message'));
 
     await tester.pumpWidget(buildTest(errStream));
     expect(find.text('This is nooooo data'), findsOneWidget);

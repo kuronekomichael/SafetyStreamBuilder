@@ -9,14 +9,8 @@ typedef Widget AsyncWidgetSafetyBuilder<T>(BuildContext context, T data);
 typedef Widget BuildHandler(BuildContext context);
 
 class SafetyStreamBuilder<T> extends StreamBuilder<T> {
-  static BuildHandler _buildErrorWidget = (_) => Icon(Icons.error_outline);
-  static BuildHandler _buildBlankWidget = (_) => Container();
-
-  static void handleError({@required BuildHandler build}) =>
-      _buildErrorWidget = build;
-
-  static void handleBlank({@required BuildHandler build}) =>
-      _buildBlankWidget = build;
+  static BuildHandler _buildErrorWidget = _defaultBuildErrorWidget;
+  static BuildHandler _buildBlankWidget = _defaultBuildBlankWidget;
 
   final AsyncWidgetSafetyBuilder<T> _builder;
   final Widget blankWidget;
@@ -30,7 +24,7 @@ class SafetyStreamBuilder<T> extends StreamBuilder<T> {
     Widget blankWidget,
     Widget errorWidget,
   }) =>
-      SafetyStreamBuilder._(
+      SafetyStreamBuilder<T>._(
         builder: builder,
         unusedBuilder: (_, __) => null, // dummy
         key: key,
@@ -66,4 +60,15 @@ class SafetyStreamBuilder<T> extends StreamBuilder<T> {
     }
     return _builder(context, snapshot.data);
   }
+
+  static Widget _defaultBuildErrorWidget(BuildContext _) =>
+      const Icon(Icons.error_outline);
+
+  static Widget _defaultBuildBlankWidget(BuildContext _) => Container();
+
+  static void handleError({@required BuildHandler build}) =>
+      _buildErrorWidget = build;
+
+  static void handleBlank({@required BuildHandler build}) =>
+      _buildBlankWidget = build;
 }
