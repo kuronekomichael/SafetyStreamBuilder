@@ -16,7 +16,7 @@ jobs:
           command: dartcop --options ./analysis_options.yaml ./lib > checkstyled.xml
       - run:
           name: Write github pr
-          command: cat checkstyled.xml | reviewdog -f "checkstyle" -ci "circle-ci" -reporter=github-pr-review
+          command: cat checkstyled.xml | reviewdog -f "checkstyle" -reporter="github-pr-review"
       - store_artifacts:
           path: checkstyled.xml
   test:
