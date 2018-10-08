@@ -34,7 +34,7 @@ class SafetyStreamBuilder<T> extends StreamBuilder<T> {
         errorWidget: errorWidget,
       );
 
-  const SafetyStreamBuilder._({
+  SafetyStreamBuilder._({
     @required AsyncWidgetSafetyBuilder<T> builder,
     @required AsyncWidgetBuilder<T> unusedBuilder,
     Key key,
