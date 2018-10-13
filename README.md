@@ -1,6 +1,6 @@
 # SafetyStreamBuilder for Flutter
 
-[![Pub](https://img.shields.io/pub/v/safety_stream_builder.svg)](https://pub.dartlang.org/packages/safety_stream_builder)
+[![Pub](https://img.shields.io/pub/v/safety_stream_builder.svg)](https://pub.dartlang.org/packages/safety_stream_builder) [![CircleCI](https://circleci.com/gh/kuronekomichael/SafetyStreamBuilder.svg?style=svg)](https://circleci.com/gh/kuronekomichael/SafetyStreamBuilder)
 
 For lazy, `SafetyStreamBuilder` provide just a little safety.
 
