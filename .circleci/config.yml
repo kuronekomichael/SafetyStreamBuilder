@@ -2,7 +2,7 @@ version: 2
 jobs:
   analytics:
     docker:
-      - image: kuronekomichael/flutter:jenkins-slave
+      - image: kuronekomichael/flutter:beta
     steps:
       - checkout
       - run:
